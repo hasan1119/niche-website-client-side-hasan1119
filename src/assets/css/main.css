@@ -6,7 +6,9 @@
   --text: #fff;
   --bg: #90a4ae;
 }
-
+p {
+  margin: 0 !important;
+}
 * {
   box-sizing: border-box;
   margin: 0;

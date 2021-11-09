@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
   min-height: 100vh !important;
   background-image: linear-gradient(#00000049, #0000006e),
     url("./../images/login.jpg");
@@ -12,17 +12,29 @@
   width: 100%;
   max-width: 450px !important;
 }
-.loginForm input {
+.registerForm input {
   display: block;
   margin: 20px 0;
 }
 
-.login-btn {
+.register-btn {
   background: var(--secondary);
   color: var(--text);
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.login-btn:hover {
+.register-btn:hover {
   color: var(--text);
+}
+
+.spinner-border {
+  height: 20px !important;
+  width: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.private-spinner .spinner-border {
+  height: 200px !important;
+  width: 200px !important;
 }

@@ -5,6 +5,9 @@ import ContextProvider from "./contexts/ContextProvider.js";
 import Home from "./pages/Home.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/Login.js";
+import Register from "./pages/Register.js";
+import Dashboard from "./pages/Dashboard.js";
+import PrivateRoute from "./protectedRoute/PrivateRoute.js";
 
 function App() {
   return (
@@ -17,8 +20,14 @@ function App() {
           <Route exact path="/home">
             <Home></Home>
           </Route>
+          <PrivateRoute exact path="/dashboard">
+            <Dashboard></Dashboard>
+          </PrivateRoute>
           <Route path="/login">
             <Login></Login>
+          </Route>
+          <Route path="/register">
+            <Register></Register>
           </Route>
         </Switch>
         <Footer />

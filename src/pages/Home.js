@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Header from "../components/Header.js";
 import Product from "../components/Product.js";
@@ -42,11 +42,20 @@ const Home = () => {
       </Container>
       <Container>
         <h2 className="text-center feature">FEATURED PRODUCTS</h2>
-        <Row>
-          {products?.slice(0, 6)?.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
-        </Row>
+        {!products.length ? (
+          <div className="text-center my-5 private-spinner py-5">
+            <Spinner variant="danger" animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            <h6>Loading...</h6>
+          </div>
+        ) : (
+          <Row>
+            {products?.slice(0, 6)?.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
+          </Row>
+        )}
         <div className="text-center">
           <Link to="/products">
             <button className="btn btn-primary mb-5">See all products</button>

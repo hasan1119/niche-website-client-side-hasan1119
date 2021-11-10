@@ -18,11 +18,12 @@ const Header = () => {
             <Nav.Link activeClassName="current" as={NavLink} to="/home">
               Home
             </Nav.Link>
-            <Nav.Link activeClassName="current" as={NavLink} to="/dashboard">
-              Dashboard
-            </Nav.Link>
+
             <Nav.Link activeClassName="current" as={NavLink} to="/products">
               Products
+            </Nav.Link>
+            <Nav.Link activeClassName="current" as={NavLink} to="/dashboard">
+              Dashboard
             </Nav.Link>
             {email ? (
               <Nav.Link>

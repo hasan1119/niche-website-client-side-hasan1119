@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/Header.js";
 import "./../assets/css/login.css";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import avatar from "./../assets/images/avater.png";
 import useContexts from "../hooks/useContexts.js";
 import { Spinner } from "react-bootstrap";
 const Login = () => {
   const { userLogin, loading } = useContexts();
   const { register, handleSubmit } = useForm();
+  const history = useHistory();
+  const location = useLocation();
+  const redirect = location?.state?.from || "/home";
   const onSubmit = (data) => {
-    userLogin(data);
+    userLogin({ ...data, history, redirect });
   };
   return (
     <div className="login-page">

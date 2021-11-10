@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -16,10 +17,12 @@ const useFirebase = () => {
   const [loading, setLoading] = useState(true);
 
   //register
-  function UserRegister({ name, email, password }) {
+  function UserRegister(newUserData, history) {
+    const { name, email, password } = newUserData;
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
+        setUserName(name);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -28,7 +31,9 @@ const useFirebase = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-        setUser(result.user);
+        history.replace("/login");
+        logout();
+        setUser({});
       })
       .catch((err) => {
         Swal.fire({
@@ -42,6 +47,16 @@ const useFirebase = () => {
       })
       .finally(() => setLoading(false));
   }
+
+  // set username
+  function setUserName(name) {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+    })
+      .then(() => {})
+      .catch((error) => {});
+  }
+
   // Get the currently signed-in user
 
   useEffect(() => {
@@ -57,7 +72,7 @@ const useFirebase = () => {
   }, []);
 
   // login
-  function userLogin({ email, password }) {
+  function userLogin({ email, password, history, redirect }) {
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
@@ -70,6 +85,7 @@ const useFirebase = () => {
           timer: 2000,
         });
         setUser(result.user);
+        history.replace(redirect);
       })
       .catch((err) => {
         Swal.fire({

@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/Header.js";
 import "./../assets/css/register.css";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import avatar from "./../assets/images/avater.png";
 import useContexts from "../hooks/useContexts.js";
 import { Spinner } from "react-bootstrap";
 const Register = () => {
   const { UserRegister, loading } = useContexts();
+  const history = useHistory();
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    UserRegister(data);
+    UserRegister(data, history);
   };
   return (
     <div className="register-page">

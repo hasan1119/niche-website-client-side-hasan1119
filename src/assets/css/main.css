@@ -5,6 +5,8 @@
   --secondary: #e91e63;
   --text: #fff;
   --bg: #90a4ae;
+  --footer: #263238;
+  --blackish: rgb(22, 22, 22);
 }
 p {
   margin: 0 !important;

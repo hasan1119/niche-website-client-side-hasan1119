@@ -23,6 +23,7 @@ const useFirebase = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setUserName(name);
+        addUserToDB(name, email);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -46,6 +47,16 @@ const useFirebase = () => {
         });
       })
       .finally(() => setLoading(false));
+  }
+  // add user to db
+  function addUserToDB(name, email) {
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name, email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
   }
 
   // set username

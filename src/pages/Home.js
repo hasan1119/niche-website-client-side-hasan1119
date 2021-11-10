@@ -10,6 +10,7 @@ import collection1 from "./../assets/images/collection/1.jpg";
 import collection2 from "./../assets/images/collection/2.jpg";
 import collection3 from "./../assets/images/collection/3.jpg";
 import collection4 from "./../assets/images/collection/4.jpg";
+import Bounce from "react-reveal/Bounce";
 const Home = () => {
   const products = useProducts();
   return (
@@ -41,7 +42,9 @@ const Home = () => {
         </Row>
       </Container>
       <Container>
-        <h2 className="text-center feature">FEATURED PRODUCTS</h2>
+        <Bounce bottom cascade>
+          <h2 className="text-center feature">FEATURED PRODUCTS</h2>
+        </Bounce>
         {!products.length ? (
           <div className="text-center my-5 private-spinner py-5">
             <Spinner variant="danger" animation="border" role="status">

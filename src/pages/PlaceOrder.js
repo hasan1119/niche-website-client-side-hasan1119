@@ -1,24 +1,46 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import Header from "../components/Header.js";
 import { useForm } from "react-hook-form";
 import useContexts from "../hooks/useContexts.js";
+import Swal from "sweetalert2";
 
 const PlaceOrder = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const { displayName, email } = useContexts();
   useEffect(() => {
-    fetch(`https://rocky-cliffs-16368.herokuapp.com/placeorder/${id}`)
+    fetch(`http://localhost:5000/placeorder/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [id]);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    Swal.fire({
+      title: "Do you want to confirm your order?",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("http://localhost:5000/placeorder", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ ...data, ...product }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              reset();
+              Swal.fire("Confirmed!", "", "success");
+              history.replace("/dashboard");
+            }
+          });
+      }
+    });
   };
 
   return (

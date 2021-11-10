@@ -3,6 +3,7 @@ import { Container, Row, Spinner } from "react-bootstrap";
 import useProducts from "../hooks/useProducts.js";
 import Header from "./Header.js";
 import Product from "./Product.js";
+import Bounce from "react-reveal/Bounce";
 
 const Products = () => {
   const products = useProducts();
@@ -20,7 +21,11 @@ const Products = () => {
         </div>
       ) : (
         <Container>
-          <h2 className="text-center mt-5 mb-4 feature">FEATURED PRODUCTS</h2>
+          <Bounce top cascade>
+            <h2 className="text-center text-uppercase mt-5 mb-4 feature">
+              Latest PRODUCTS
+            </h2>
+          </Bounce>
           <Row>
             {products?.map((product) => (
               <Product kay={product._id} product={product} />

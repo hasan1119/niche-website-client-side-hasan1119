@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Spinner, Table } from "react-bootstrap";
+import { Spinner, Table, Button } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
+import useContexts from "../hooks/useContexts.js";
 
 const Orders = () => {
+  const { email } = useContexts();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(orders);
 
   useEffect(() => {
-    fetch(`https://rocky-cliffs-16368.herokuapp.com/orders`)
+    fetch(`https://rocky-cliffs-16368.herokuapp.com/orders?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
         setLoading(false);
       })
       .catch((error) => toast.error(error.message));
-  }, []);
+  }, [email]);
 
   const deletion = (id) => {
     Swal.fire({
@@ -87,12 +88,14 @@ const Orders = () => {
                     </button>
                   </td>
                   <td>
-                    <button
+                    <Button
+                      variant="outline-danger"
+                      className="p-1 ml-3 mb-0"
                       onClick={() => deletion(order._id)}
-                      className="btn btn-danger"
                     >
+                      <i className="fas mx-1 fa-trash"></i>
                       Delete
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               </tbody>

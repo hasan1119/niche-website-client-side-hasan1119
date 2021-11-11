@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Spinner, Table } from "react-bootstrap";
+import { Spinner, Table, Button } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 
@@ -101,12 +101,14 @@ const Orders = () => {
                   <td>{order.address}</td>
                   <td title={order.desc}>{order.desc.slice(0, 10)}...</td>
                   <td>
-                    <button
+                    <Button
+                      variant="outline-danger"
+                      className="p-1 ml-3 mb-0"
                       onClick={() => deletion(order._id)}
-                      className="btn btn-danger"
                     >
+                      <i className="fas mx-1 fa-trash"></i>
                       Delete
-                    </button>
+                    </Button>
                   </td>
                   <td>
                     <select

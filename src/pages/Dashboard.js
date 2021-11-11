@@ -10,6 +10,7 @@ import MakeAdmin from "../components/MakeAdmin.js";
 import ManageProducts from "../components/ManageProducts.js";
 import "../assets/css/admin.css";
 import MyOrders from "../components/MyOrders.js";
+import UpdateProduct from "../components/UpdateProduct.js";
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
@@ -70,6 +71,9 @@ const Dashboard = () => {
               </Route>
               <Route exact path={`${path}/addProduct`}>
                 <AddProduct></AddProduct>
+              </Route>
+              <Route exact path={`${path}/addProduct/:id`}>
+                <UpdateProduct></UpdateProduct>
               </Route>
               <Route exact path={`${path}/makeAdmin`}>
                 <MakeAdmin />

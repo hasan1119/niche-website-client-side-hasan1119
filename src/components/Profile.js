@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button, Card, Container } from "react-bootstrap";
-import toast from "react-hot-toast";
 import useContexts from "../hooks/useContexts.js";
 
 const Profile = () => {

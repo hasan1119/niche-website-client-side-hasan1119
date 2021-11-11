@@ -1,6 +1,6 @@
 import React from "react";
 
-const ManageServices = () => {
+const ManageProducts = () => {
   return (
     <div>
       <h1>Manage orders</h1>
@@ -8,4 +8,4 @@ const ManageServices = () => {
   );
 };
 
-export default ManageServices;
+export default ManageProducts;

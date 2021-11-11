@@ -17,3 +17,10 @@ p {
   padding: 0;
   font-family: "Poppins", "Hind Siliguri", sans-serif;
 }
+tr {
+  vertical-align: middle;
+}
+td,
+th {
+  min-width: 120px;
+}

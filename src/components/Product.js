@@ -19,7 +19,7 @@ const Product = ({ product }) => {
           </div>
           <Card.Body>
             <Card.Title className="text-uppercase">{title}</Card.Title>
-            <Card.Title>Price: {price}TK</Card.Title>
+            <Card.Title>Price: {price}.00TK</Card.Title>
             <Card.Text>{desc}</Card.Text>
             <Card.Text>
               Rating:{" "}
@@ -34,7 +34,7 @@ const Product = ({ product }) => {
             </Card.Text>
             <Card.Text>Total Review: {totalReview}</Card.Text>
             <Link to={`/placeorder/${_id}`}>
-              <button className="btn btn-primary">Buy Now</button>
+              <button className="btn mt-2 btn-primary">Buy Now</button>
             </Link>
           </Card.Body>
         </Card>

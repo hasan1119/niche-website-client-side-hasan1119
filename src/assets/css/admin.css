@@ -2,11 +2,21 @@
   max-width: 250px;
   margin-right: 25px;
   height: 90vh;
-  border-right: 1px solid #ddd;
+  border-right: none;
+}
+@media screen and (min-width: 768px) {
+  .admin-side-bar {
+    border-right: 1px solid #ddd;
+  }
 }
 .admin-side-bar ul {
   margin-top: 20px;
   list-style: none;
+}
+@media screen and (max-width: 770px) {
+  .admin-side-bar {
+    height: auto !important;
+  }
 }
 .admin-side-bar ul li {
   margin: 5px 0;

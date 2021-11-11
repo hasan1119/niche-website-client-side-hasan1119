@@ -48,7 +48,7 @@ const Dashboard = () => {
               </ul>
             </div>
           </Col>
-          <Col lg="9" className="admin-container">
+          <Col md={8} lg="9" className="admin-container">
             <Switch>
               <Route exact path={path}>
                 <Profile></Profile>

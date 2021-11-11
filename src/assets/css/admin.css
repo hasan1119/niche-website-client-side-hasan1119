@@ -1,0 +1,34 @@
+.admin-side-bar {
+  max-width: 250px;
+  margin-right: 25px;
+  height: 90vh;
+  border-right: 1px solid #ddd;
+}
+.admin-side-bar ul {
+  margin-top: 20px;
+  list-style: none;
+}
+.admin-side-bar ul li {
+  margin: 5px 0;
+}
+.admin-side-bar ul li a {
+  color: #a3a3a3;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.5s;
+}
+.admin-side-bar ul li a:hover {
+  color: #000;
+}
+.admin-side-bar ul li a i {
+  margin-right: 10px;
+}
+.admin-container {
+  margin-top: 20px;
+}
+.dashboard {
+  overflow-x: hidden;
+}
+.active {
+  color: #000 !important;
+}

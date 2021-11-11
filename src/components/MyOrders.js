@@ -9,7 +9,7 @@ const Orders = () => {
   console.log(orders);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
+    fetch(`https://rocky-cliffs-16368.herokuapp.com/orders`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -25,7 +25,7 @@ const Orders = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/placeorder/${id}`, {
+        fetch(`https://rocky-cliffs-16368.herokuapp.com/placeorder/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

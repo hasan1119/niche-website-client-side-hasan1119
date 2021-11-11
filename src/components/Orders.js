@@ -9,7 +9,7 @@ const Orders = () => {
   console.log(orders);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
+    fetch(`https://rocky-cliffs-16368.herokuapp.com/orders`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -29,7 +29,7 @@ const Orders = () => {
     setOrders(modifiedOrders);
     const modifiedStatus = { id, status };
 
-    fetch("http://localhost:5000/updateOrderStatus", {
+    fetch("https://rocky-cliffs-16368.herokuapp.com/updateOrderStatus", {
       method: "put",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(modifiedStatus),
@@ -52,7 +52,7 @@ const Orders = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/placeorder/${id}`, {
+        fetch(`https://rocky-cliffs-16368.herokuapp.com/placeorder/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -15,7 +15,7 @@ const Register = () => {
     UserRegister(data, history);
   };
   if (email) {
-    return <>{history.replace("/")}</>;
+    return <>{history.replace("/login")}</>;
   } else {
     return (
       <div className="register-page">

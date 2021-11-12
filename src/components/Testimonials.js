@@ -22,11 +22,15 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section id="reviews" className="testimonials p-md-3">
+    <section
+      id="reviews"
+      style={{ overflowX: "hidden" }}
+      className="testimonials p-md-3"
+    >
       <Fade bottom duration={2500} distance="40px">
         <div className="my-5 py-4">
           <div className="review-title text-center">
-            <span>What Our Clients Says</span>
+            <span>What Our Customer Says</span>
             <h2>Testimonials</h2>
           </div>
           {loading ? (

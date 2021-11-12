@@ -5,7 +5,7 @@ import useContexts from "../hooks/useContexts.js";
 const Profile = () => {
   const { displayName, email, logout } = useContexts();
   return (
-    <Container style={{ maxWidth: "30rem" }}>
+    <Container style={{ maxWidth: "30rem", marginBottom: "25px" }}>
       <Card className="border-0 shadow">
         <Card.Header as={"h4"} className="text-center border-0 mt-1">
           Profile

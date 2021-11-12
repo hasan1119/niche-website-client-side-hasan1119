@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header.js";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import { Route, Switch, useRouteMatch } from "react-router";
 import Profile from "../components/Profile.js";
 import Orders from "../components/Orders.js";
@@ -13,9 +13,32 @@ import MyOrders from "../components/MyOrders.js";
 import UpdateProduct from "../components/UpdateProduct.js";
 import AddReview from "../components/AddReview.js";
 import Payment from "../components/Payment.js";
+import AdminRoute from "../protectedRoute/AdminRoute.js";
+import useContexts from "../hooks/useContexts.js";
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
+  const { email } = useContexts();
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch(`https://rocky-cliffs-16368.herokuapp.com/admin/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+        setLoading(false);
+      });
+  }, [email]);
+  if (loading) {
+    return (
+      <div className="text-center my-5 private-spinner py-5">
+        <Spinner variant="danger" animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <h6>Loading...</h6>
+      </div>
+    );
+  }
   return (
     <div>
       <Header />
@@ -24,41 +47,54 @@ const Dashboard = () => {
           <Col className="admin-side-bar">
             <div>
               <ul>
+                {user?.role === "admin" ? (
+                  <h6 className="fw-bold text-uppercase">Admin Dashboard</h6>
+                ) : (
+                  <h6 className="fw-bold text-uppercase">User Dashboard</h6>
+                )}
                 <li className="sideBarLink">
                   <NavLink to={`${url}/profile`}>
                     <i class="fas fa-user-circle"></i> Profile
                   </NavLink>
                 </li>
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/orders`}>
-                    <i class="fas fa-list"></i> Order List
-                  </NavLink>
-                </li>
+                {user?.role === "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/orders`}>
+                      <i class="fas fa-list"></i> Order List
+                    </NavLink>
+                  </li>
+                )}
                 <li className="sideBarLink">
                   <NavLink to={`${url}/myorder`}>
                     <i class="fas fa-cart-arrow-down"></i> My order
                   </NavLink>
                 </li>
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/addProduct`}>
-                    <i class="fas fa-file-medical"></i> Add Product
-                  </NavLink>
-                </li>
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/makeAdmin`}>
-                    <i class="fas fa-user-plus"></i>Make admin
-                  </NavLink>
-                </li>
+                {user?.role === "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/addProduct`}>
+                      <i class="fas fa-file-medical"></i> Add Product
+                    </NavLink>
+                  </li>
+                )}
+                {user?.role === "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/makeAdmin`}>
+                      <i class="fas fa-user-plus"></i>Make admin
+                    </NavLink>
+                  </li>
+                )}
                 <li className="sideBarLink">
                   <NavLink to={`${url}/payment`}>
                     <i class="fab fa-amazon-pay"></i>Payment
                   </NavLink>
                 </li>
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/manageProduct`}>
-                    <i class="fas fa-cog"></i> Manage Products
-                  </NavLink>
-                </li>
+                {user?.role === "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/manageProduct`}>
+                      <i class="fas fa-cog"></i> Manage Products
+                    </NavLink>
+                  </li>
+                )}
                 <li className="sideBarLink">
                   <NavLink to={`${url}/review`}>
                     <i class="fas fa-comment-dots"></i> Review
@@ -75,30 +111,30 @@ const Dashboard = () => {
               <Route exact path={`${path}/profile`}>
                 <Profile></Profile>
               </Route>
-              <Route exact path={`${path}/orders`}>
+              <AdminRoute exact path={`${path}/orders`}>
                 <Orders></Orders>
-              </Route>
+              </AdminRoute>
               <Route exact path={`${path}/myorder`}>
                 <MyOrders></MyOrders>
               </Route>
-              <Route exact path={`${path}/addProduct`}>
+              <AdminRoute exact path={`${path}/addProduct`}>
                 <AddProduct></AddProduct>
-              </Route>
-              <Route exact path={`${path}/addProduct/:id`}>
+              </AdminRoute>
+              <AdminRoute exact path={`${path}/addProduct/:id`}>
                 <UpdateProduct></UpdateProduct>
-              </Route>
+              </AdminRoute>
               <Route exact path={`${path}/review`}>
                 <AddReview></AddReview>
               </Route>
-              <Route exact path={`${path}/makeAdmin`}>
+              <AdminRoute exact path={`${path}/makeAdmin`}>
                 <MakeAdmin />
-              </Route>
+              </AdminRoute>
               <Route exact path={`${path}/payment`}>
                 <Payment />
               </Route>
-              <Route exact path={`${path}/manageProduct`}>
+              <AdminRoute exact path={`${path}/manageProduct`}>
                 <ManageProducts />
-              </Route>
+              </AdminRoute>
             </Switch>
           </Col>
         </Row>

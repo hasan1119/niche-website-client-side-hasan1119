@@ -48,9 +48,11 @@ const ManageProducts = () => {
 
   return (
     <div
-      className="px-5 pt-4 mx-md-4 mt-5 bg-white"
+      className="px-3 pt-2 mx-md-4 bg-white"
       style={{ borderRadius: "15px" }}
     >
+      <h3 className="text-center fw-bold mb-4">Manage all orders</h3>
+
       <Table hover borderless responsive>
         <thead className="bg-light">
           <tr>

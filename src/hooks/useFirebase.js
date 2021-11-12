@@ -32,9 +32,9 @@ const useFirebase = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-        history.replace("/login");
         logout();
         setUser({});
+        history.replace("/login");
       })
       .catch((err) => {
         Swal.fire({

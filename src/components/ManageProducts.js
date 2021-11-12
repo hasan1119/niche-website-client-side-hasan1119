@@ -23,6 +23,7 @@ const ManageProducts = () => {
 
   const deleteProduct = (id) => {
     Swal.fire({
+      icon: "warning",
       title: "Are you sure to delete this product?",
       showCancelButton: true,
       confirmButtonText: "Yes",

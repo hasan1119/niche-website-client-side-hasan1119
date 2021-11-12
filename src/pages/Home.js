@@ -11,6 +11,7 @@ import collection2 from "./../assets/images/collection/2.jpg";
 import collection3 from "./../assets/images/collection/3.jpg";
 import collection4 from "./../assets/images/collection/4.jpg";
 import Bounce from "react-reveal/Bounce";
+import Testimonials from "../components/Testimonials.js";
 const Home = () => {
   const products = useProducts();
   return (
@@ -65,6 +66,7 @@ const Home = () => {
           </Link>
         </div>
       </Container>
+      <Testimonials />
     </div>
   );
 };

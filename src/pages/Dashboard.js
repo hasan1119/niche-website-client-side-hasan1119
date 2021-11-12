@@ -11,6 +11,8 @@ import ManageProducts from "../components/ManageProducts.js";
 import "../assets/css/admin.css";
 import MyOrders from "../components/MyOrders.js";
 import UpdateProduct from "../components/UpdateProduct.js";
+import AddReview from "../components/AddReview.js";
+import Payment from "../components/Payment.js";
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
@@ -48,8 +50,18 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="sideBarLink">
+                  <NavLink to={`${url}/payment`}>
+                    <i class="fab fa-amazon-pay"></i>Payment
+                  </NavLink>
+                </li>
+                <li className="sideBarLink">
                   <NavLink to={`${url}/manageProduct`}>
                     <i class="fas fa-cog"></i> Manage Products
+                  </NavLink>
+                </li>
+                <li className="sideBarLink">
+                  <NavLink to={`${url}/review`}>
+                    <i class="fas fa-comment-dots"></i> Review
                   </NavLink>
                 </li>
               </ul>
@@ -75,8 +87,14 @@ const Dashboard = () => {
               <Route exact path={`${path}/addProduct/:id`}>
                 <UpdateProduct></UpdateProduct>
               </Route>
+              <Route exact path={`${path}/review`}>
+                <AddReview></AddReview>
+              </Route>
               <Route exact path={`${path}/makeAdmin`}>
                 <MakeAdmin />
+              </Route>
+              <Route exact path={`${path}/payment`}>
+                <Payment />
               </Route>
               <Route exact path={`${path}/manageProduct`}>
                 <ManageProducts />

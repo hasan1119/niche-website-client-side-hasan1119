@@ -27,9 +27,10 @@ const UpdateProduct = () => {
   }, [id]);
 
   const onSubmit = async (data) => {
-    data.rating = 0;
-    data.totalReview = 0;
+    data.rating = 5;
+    data.totalReview = 1;
     Swal.fire({
+      icon: "warning",
       title: "Are you sure to update this product?",
       showCancelButton: true,
       confirmButtonText: "Yes",

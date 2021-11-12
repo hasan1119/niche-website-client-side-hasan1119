@@ -21,6 +21,7 @@ const PlaceOrder = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     Swal.fire({
+      icon: "warning",
       title: "Do you want to confirm your order?",
       showCancelButton: true,
       confirmButtonText: "Yes",

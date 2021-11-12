@@ -21,6 +21,7 @@ const Orders = () => {
 
   const deletion = (id) => {
     Swal.fire({
+      icon: "warning",
       title: "Are you sure to delete this order?",
       showCancelButton: true,
       confirmButtonText: "Yes",

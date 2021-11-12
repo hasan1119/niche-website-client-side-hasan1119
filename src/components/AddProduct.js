@@ -19,6 +19,7 @@ const AddProduct = () => {
     data.rating = 0;
     data.totalReview = 0;
     Swal.fire({
+      icon: "warning",
       title: "Are you sure to add this product?",
       showCancelButton: true,
       confirmButtonText: "Yes",
@@ -76,7 +77,7 @@ const AddProduct = () => {
               <Form.Group as={Col} md={6} sm={12}>
                 <Form.Label style={{ fontWeight: "bold" }}>Price</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="number"
                   {...register("price", { required: true })}
                   placeholder="Enter product price"
                 />

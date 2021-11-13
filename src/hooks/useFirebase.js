@@ -32,9 +32,8 @@ const useFirebase = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-        logout();
-        setUser({});
-        history.replace("/login");
+        setUser(result.user);
+        history.replace("/");
       })
       .catch((err) => {
         Swal.fire({
@@ -50,7 +49,7 @@ const useFirebase = () => {
   }
   // add user to db
   function addUserToDB(name, email) {
-    fetch("https://rocky-cliffs-16368.herokuapp.com/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ name, email }),

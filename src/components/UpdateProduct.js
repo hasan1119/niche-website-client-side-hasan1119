@@ -19,7 +19,7 @@ const UpdateProduct = () => {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    fetch(`https://rocky-cliffs-16368.herokuapp.com/updateOne/${id}`)
+    fetch(`http://localhost:5000/updateOne/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -36,14 +36,11 @@ const UpdateProduct = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://rocky-cliffs-16368.herokuapp.com/updateProduct?id=${id}`,
-          {
-            method: "put",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(data),
-          }
-        )
+        fetch(`http://localhost:5000/updateProduct?id=${id}`, {
+          method: "put",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(data),
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount) {

@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Header.js";
 import "./../assets/css/login.css";
 import { useForm } from "react-hook-form";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -20,7 +19,6 @@ const Login = () => {
   } else {
     return (
       <div className="login-page">
-        <Header />
         <div
           style={{ height: "100vh" }}
           className="d-flex mx-3 align-items-center justify-content-center"

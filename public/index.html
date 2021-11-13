@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link
+      rel="icon"
+      href="https://bata.lk/wp-content/uploads/2019/05/Bata-favicon.png"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -17,12 +20,45 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
     />
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Bata</title>
+    <title>Bata Shop</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var menuButton = document.querySelector(".menu-button");
+      var openMenu = function () {
+        swiper.slidePrev();
+      };
+      var swiper = new Swiper(".swiper", {
+        slidesPerView: "auto",
+        initialSlide: 1,
+        resistanceRatio: 0,
+        slideToClickedSlide: true,
+        on: {
+          slideChangeTransitionStart: function () {
+            var slider = this;
+            if (slider.activeIndex === 0) {
+              menuButton.classList.add("cross");
+              // required because of slideToClickedSlide
+              menuButton.removeEventListener("click", openMenu, true);
+            } else {
+              menuButton.classList.remove("cross");
+            }
+          },
+          slideChangeTransitionEnd: function () {
+            var slider = this;
+            if (slider.activeIndex === 1) {
+              menuButton.addEventListener("click", openMenu, true);
+            }
+          },
+        },
+      });
+    </script>
   </body>
 </html>

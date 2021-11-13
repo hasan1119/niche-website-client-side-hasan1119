@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Header.js";
 import "./../assets/css/register.css";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
@@ -19,7 +18,6 @@ const Register = () => {
   } else {
     return (
       <div className="register-page">
-        <Header />
         <div
           style={{ height: "100vh" }}
           className="d-flex mx-3 align-items-center justify-content-center"

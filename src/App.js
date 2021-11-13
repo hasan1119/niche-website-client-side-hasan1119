@@ -10,11 +10,14 @@ import Dashboard from "./pages/Dashboard.js";
 import PrivateRoute from "./protectedRoute/PrivateRoute.js";
 import Products from "./components/Products.js";
 import PlaceOrder from "./pages/PlaceOrder.js";
+import PageNotFound from "./pages/PageNotFound.js";
+import Header from "./components/Header.js";
 
 function App() {
   return (
     <ContextProvider>
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home></Home>
@@ -37,6 +40,9 @@ function App() {
           <PrivateRoute path="/placeorder/:id">
             <PlaceOrder></PlaceOrder>
           </PrivateRoute>
+          <Route path="*">
+            <PageNotFound></PageNotFound>
+          </Route>
         </Switch>
         <Footer />
       </Router>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header.js";
 import { Col, Row, Spinner } from "react-bootstrap";
 import { Route, Switch, useRouteMatch } from "react-router";
 import Profile from "../components/Profile.js";
@@ -22,7 +21,7 @@ const Dashboard = () => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`https://rocky-cliffs-16368.herokuapp.com/admin/${email}`)
+    fetch(`http://localhost:5000/admin/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
@@ -41,7 +40,6 @@ const Dashboard = () => {
   }
   return (
     <div>
-      <Header />
       <div className="mx-2 dashboard">
         <Row>
           <Col className="admin-side-bar">
@@ -52,11 +50,15 @@ const Dashboard = () => {
                 ) : (
                   <h6 className="fw-bold text-uppercase">User Dashboard</h6>
                 )}
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/profile`}>
-                    <i class="fas fa-user-circle"></i> Profile
-                  </NavLink>
-                </li>
+
+                {user?.role !== "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/profile`}>
+                      <i class="fas fa-user-circle"></i> Profile
+                    </NavLink>
+                  </li>
+                )}
+
                 {user?.role === "admin" && (
                   <li className="sideBarLink">
                     <NavLink to={`${url}/orders`}>
@@ -64,11 +66,15 @@ const Dashboard = () => {
                     </NavLink>
                   </li>
                 )}
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/myorder`}>
-                    <i class="fas fa-cart-arrow-down"></i> My order
-                  </NavLink>
-                </li>
+
+                {user?.role !== "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/myorder`}>
+                      <i class="fas fa-cart-arrow-down"></i> My order
+                    </NavLink>
+                  </li>
+                )}
+
                 {user?.role === "admin" && (
                   <li className="sideBarLink">
                     <NavLink to={`${url}/addProduct`}>
@@ -83,11 +89,13 @@ const Dashboard = () => {
                     </NavLink>
                   </li>
                 )}
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/payment`}>
-                    <i class="fab fa-amazon-pay"></i>Payment
-                  </NavLink>
-                </li>
+                {user?.role !== "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/payment`}>
+                      <i class="fab fa-amazon-pay"></i>Payment
+                    </NavLink>
+                  </li>
+                )}
                 {user?.role === "admin" && (
                   <li className="sideBarLink">
                     <NavLink to={`${url}/manageProduct`}>
@@ -95,11 +103,13 @@ const Dashboard = () => {
                     </NavLink>
                   </li>
                 )}
-                <li className="sideBarLink">
-                  <NavLink to={`${url}/review`}>
-                    <i class="fas fa-comment-dots"></i> Review
-                  </NavLink>
-                </li>
+                {user?.role !== "admin" && (
+                  <li className="sideBarLink">
+                    <NavLink to={`${url}/review`}>
+                      <i class="fas fa-comment-dots"></i> Review
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </div>
           </Col>
